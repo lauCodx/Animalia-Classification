@@ -90,7 +90,7 @@ class WithBackBone extends Animalia{
 
 const animalia = new Animalia();
 animalia.addToShelf(animalKingdoms);
-/////////////////////////////////////
+
 
 const backBone = new WithBackBone()
 
