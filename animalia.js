@@ -1,123 +1,86 @@
 
-const animalKingdoms = [
 
-    {name: 'Shark', withoutBackBone: false, coldBlooded: true, warmBlooded: false, withBackBone: true, type: 'Fish'},
+class Animalia {
+    constructor(name, type){
 
-    {name: 'Butterfly', withoutBackBone: true, coldBlooded: true, warmBlooded: false, withBackBone: false, type: 'Anthropoda'},
+        this.name = name;
+        this.type = type;
 
-    {name: 'Frog', withoutBackBone: false, coldBlooded: true, warmBlooded: false, withBackBone: true, type: 'Amphibian'},
+        if(new.target === Animalia){
+            throw new Error ('Impliment this class')
+        }
 
-    {name: 'Turtle', withoutBackBone: false, coldBlooded: true, warmBlooded: false, withBackBone: true, type: 'Reptiles'},
+    }
 
-    {name: 'Bird', withoutBackBone: false, coldBlooded: false, warmBlooded: true, withBackBone: true, type: 'AVES'},
+    classify(){
+        throw new Error('Impliment this method')
+    }
     
-    {name: 'Cat', withoutBackBone: false, coldBlooded: false, warmBlooded: false, withBackBone: true, type: 'Mammals'}
+}
+
+// Inheritance
+class WithBackBone extends Animalia {
+    constructor(name, type){
+        super(name, type)
+        
+    }
+
+
+classify(){
+    
+    return {
+        name: this.name,
+        type: this.type
+    }
+}
+
+}
+
+class ColdBlooded extends Animalia {
+    constructor(name, type){
+        super(name, type)
+        
+    }
+
+
+classify(){
+    
+    return {
+        name: this.name,
+        type: this.type
+    }
+}
+    
+  
+    
+}
+
+class WithoutBackBone extends ColdBlooded {
+    
+ 
+
+}
+
+class WarmBlooded extends WithBackBone {
+
+    
+ 
+
+}
+
+const classification = [
+    {vertebrate : new WithBackBone('Cat', 'Mammals')},
+    {vertebrate : new WithBackBone('Bird', 'AVES')},
+    {vertebrate : new WithBackBone('Shark', 'Fish')},
+    {vertebrate : new WithBackBone('Turtle', 'Reptile')},
+    {vertebrate : new WithBackBone('Frog', 'Amphibia')}
 ]
 
 
 
-class Animalia {
-    constructor(){
+// const an = new WithBackBone('cat', 'Aves')
+// const amm = new WithoutBackBone('cat', 'Aves')
+// // const ma = new warmBlooded();
 
-        this.animalShelf = [];
-    }
-    
-    addToShelf(animal){
-        for (let animalKingdoms of animal ){
-            this.animalShelf.push(animalKingdoms);
-        }
-    }
-
-    showAll(){
-        return this.animalShelf;
-    }
-
-    check(){
-        throw new Error ("you can only impliment this method")
-    }
-}
-
-// Inheritance
-class WithoutBackBone extends Animalia {
-
-    constructor(){
-        super();
-        this.animalShelf = []
-    }
-
-    
-
-    check() {
-
-        const checkIn = this.animalShelf.filter(animal => animal.withoutBackBone === true);
-
-        const select = checkIn.map(animal => {
-            return {
-                name : animal.name,
-                type: animal.type
-            }
-        })
-
-        return select;
-    }
-}
-
-
-class WithBackBone extends Animalia{
-    
-    constructor(){
-        super();
-
-        this.animalShelf = [];
-    }
-
-    check(){
-        const checkIn = this.animalShelf.filter(animal => animal.withBackBone === true);
-
-        const select = checkIn.map(animal => {
-            return {
-                name : animal.name,
-                type: animal.type
-            }
-        })
-
-        return select;
-    }
-
-}
-
-
-
-const animalia = new Animalia();
-animalia.addToShelf(animalKingdoms);
-
-
-const backBone = new WithBackBone()
-
-// console.log(animalia.showAll())
-console.log(backBone.check())
-
-//     withBackBone (){
-//         const check = this.animalShelf.filter(animal => animal.withBackBone === true);
-
-//         return check;
-//     }
-
-//     coldBlooded(){
-//         const check = this.animalShelf.filter(animal => animal.coldBlooded === true);
-
-//         return check;
-//     }
-
-//    warmblooded (){
-//         const check = this.animalShelf.filter(animal => animal.warmBlooded === true);
-
-//         return check;
-//     }
-
-
-// }
-
-// module.exports = Animalia;
-// module.exports = WithoutBackBone;
-// module.exports = WithBackBone;
+console.log(classification)
+// console.log(ma)
